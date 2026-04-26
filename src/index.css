@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ESP32 Cyber Dashboard Design System
+   All colors HSL. Dark cybersecurity aesthetic with neon accents.
+*/
+
+@layer base {
+  :root {
+    /* Core surface */
+    --background: 222 47% 8%;
+    --foreground: 160 30% 92%;
+
+    --card: 222 45% 11%;
+    --card-foreground: 160 30% 92%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 160 30% 92%;
+
+    /* Neon green primary */
+    --primary: 142 90% 55%;
+    --primary-foreground: 222 47% 8%;
+    --primary-glow: 142 95% 65%;
+
+    /* Cyber blue secondary */
+    --secondary: 199 89% 55%;
+    --secondary-foreground: 222 47% 8%;
+    --secondary-glow: 199 95% 65%;
+
+    --muted: 222 35% 16%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 199 89% 55%;
+    --accent-foreground: 222 47% 8%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --warning: 45 95% 58%;
+    --warning-foreground: 222 47% 8%;
+
+    --success: 142 90% 55%;
+    --success-foreground: 222 47% 8%;
+
+    --border: 222 35% 18%;
+    --input: 222 35% 16%;
+    --ring: 142 90% 55%;
+
+    --radius: 0.75rem;
+
+    /* Terminal */
+    --terminal-bg: 222 60% 5%;
+    --terminal-fg: 142 90% 65%;
+    --terminal-error: 0 90% 65%;
+    --terminal-warn: 45 95% 60%;
+    --terminal-info: 199 95% 65%;
+    --terminal-muted: 215 20% 50%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(142 90% 55%), hsl(160 90% 50%));
+    --gradient-secondary: linear-gradient(135deg, hsl(199 89% 55%), hsl(220 90% 60%));
+    --gradient-surface: linear-gradient(180deg, hsl(222 45% 12%), hsl(222 47% 9%));
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(142 90% 55% / 0.15), transparent 70%);
+
+    /* Shadows */
+    --shadow-glow-primary: 0 0 24px hsl(142 90% 55% / 0.35);
+    --shadow-glow-secondary: 0 0 24px hsl(199 89% 55% / 0.35);
+    --shadow-elevated: 0 12px 40px -12px hsl(222 80% 2% / 0.6);
+
+    /* Transitions */
+    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Sidebar */
+    --sidebar-background: 222 50% 7%;
+    --sidebar-foreground: 160 25% 85%;
+    --sidebar-primary: 142 90% 55%;
+    --sidebar-primary-foreground: 222 47% 8%;
+    --sidebar-accent: 222 40% 13%;
+    --sidebar-accent-foreground: 142 90% 65%;
+    --sidebar-border: 222 35% 15%;
+    --sidebar-ring: 142 90% 55%;
+  }
+
+  .dark {
+    /* Same scheme — app is dark by default */
+    --background: 222 47% 8%;
+    --foreground: 160 30% 92%;
+    --card: 222 45% 11%;
+    --card-foreground: 160 30% 92%;
+    --popover: 222 47% 10%;
+    --popover-foreground: 160 30% 92%;
+    --primary: 142 90% 55%;
+    --primary-foreground: 222 47% 8%;
+    --secondary: 199 89% 55%;
+    --secondary-foreground: 222 47% 8%;
+    --muted: 222 35% 16%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 199 89% 55%;
+    --accent-foreground: 222 47% 8%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 35% 18%;
+    --input: 222 35% 16%;
+    --ring: 142 90% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: var(--gradient-glow);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  .font-sans {
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .text-glow-primary {
+    text-shadow: 0 0 12px hsl(var(--primary) / 0.6);
+  }
+  .text-glow-secondary {
+    text-shadow: 0 0 12px hsl(var(--secondary) / 0.6);
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .scanline::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      hsl(var(--primary) / 0.02) 2px,
+      hsl(var(--primary) / 0.02) 4px
+    );
+    pointer-events: none;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px hsl(var(--primary) / 0.4); }
+  50% { box-shadow: 0 0 20px hsl(var(--primary) / 0.8); }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
